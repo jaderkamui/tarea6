@@ -1,22 +1,18 @@
 pluginManagement {
     repositories {
-        google {
-            content {
-                includeGroupByRegex("com.android.*")
-                includeGroupByRegex("com.google.*")
-                includeGroupByRegex("androidx.*")
-            }
-        }
+        google() // Repositorio Google para plugins
         mavenCentral()
         gradlePluginPortal()
     }
 }
+
 dependencyResolutionManagement {
-    repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
+    repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS) // Fuerza a usar solo los repositorios de settings
     repositories {
-        google()
+        google() // Repositorio Google para dependencias
         mavenCentral()
     }
 }
+
 rootProject.name = "jader_munoz_seccion6"
 include(":app")

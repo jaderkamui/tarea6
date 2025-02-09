@@ -1,4 +1,4 @@
-import androidx.glance.appwidget.compose
+
 
 plugins {
     id("com.android.application")
@@ -30,12 +30,12 @@ android {
     }
 
     compileOptions {
-        sourceCompatibility = org.jetbrains.kotlin.KotlinVersion.VERSION_1_5.toString()
-        targetCompatibility = org.jetbrains.kotlin.KotlinVersion.VERSION_1_5.toString()
+        sourceCompatibility = JavaVersion.VERSION_1_8 // O JavaVersion.VERSION_11 si usas Java 11
+        targetCompatibility = JavaVersion.VERSION_1_8 // O JavaVersion.VERSION_11 si usas Java 11
     }
 
     kotlinOptions {
-        jvmTarget = "11"
+        jvmTarget = "1.8"
         freeCompilerArgs = listOf("-Xopt-in=kotlin.RequiresOptIn")
     }
 
@@ -51,6 +51,8 @@ android {
 dependencies {
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.lifecycle.runtime.ktx)
+    implementation(libs.androidx.glance)
+    implementation(libs.androidx.glance.appwidget) // Si necesitas appwidget
     implementation(libs.androidx.activity.compose)
     implementation(platform(libs.androidx.compose.bom))
     implementation(libs.androidx.ui)
@@ -66,18 +68,18 @@ dependencies {
     debugImplementation(libs.androidx.ui.test.manifest)
 
     // Room
-    implementation("androidx.room:room-runtime:2.5.0")
-    kapt("androidx.room:room-compiler:2.5.0")
-    implementation("androidx.room:room-ktx:2.5.0")
+    implementation(libs.androidx.room.runtime)
+    kapt(libs.androidx.room.compiler)
+    implementation(libs.androidx.room.ktx)
 
     // Lifecycle
-    implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:2.6.2")
-    implementation("androidx.lifecycle:lifecycle-livedata-ktx:2.6.2")
+    implementation(libs.androidx.lifecycle.viewmodel.ktx)
+    implementation(libs.androidx.lifecycle.livedata.ktx)
 
     // Hilt
-    implementation("com.google.dagger:hilt-android:2.44")
-    kapt("com.google.dagger:hilt-compiler:2.44")
-    implementation("androidx.hilt:hilt-navigation-compose:1.1.0-alpha01")
+    implementation(libs.hilt.android)
+    kapt(libs.hilt.compiler)
+    implementation(libs.androidx.hilt.navigation.compose)
 
     // Para compartir datos
     implementation(libs.androidx.core.ktx)
