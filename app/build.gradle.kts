@@ -10,12 +10,12 @@ plugins {
 
 android {
     namespace = "muni.jader_munoz_seccion6"
-    compileSdk = 35
+    compileSdk = 34
 
     defaultConfig {
         applicationId = "muni.jader_munoz_seccion6"
         minSdk = 21
-        targetSdk = 35
+        targetSdk = 34
         versionCode = 1
         versionName = "1.0"
 
@@ -35,7 +35,7 @@ android {
     }
 
     kotlinOptions {
-        jvmTarget = "1.8"
+        jvmTarget = "17" // O "11" si prefieres
         freeCompilerArgs = listOf("-Xopt-in=kotlin.RequiresOptIn")
     }
 

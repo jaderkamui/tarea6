@@ -1,11 +1,4 @@
-import java.io.File
-import org.gradle.api.file.Directory
-
-plugins {
-    id("com.android.application") version "8.2.2" apply false // o la version que corresponda
-    id("org.jetbrains.kotlin.android") version "1.8.22" apply false // o la version que corresponda
-}
-
+// Top-level build file where you can add configuration options common to all sub-projects/modules.
 buildscript {
     dependencies {
         classpath("com.android.tools.build:gradle:8.2.2") // O la versión más reciente
@@ -14,11 +7,28 @@ buildscript {
     }
 }
 
+pluginManagement {
+    repositories {
+        google()
+        mavenCentral()
+        gradlePluginPortal()
+    }
+}
+
+dependencyResolutionManagement {
+    repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
+    repositories {
+        google()
+        mavenCentral()
+    }
+}
+
+rootProject.name = "jader_munoz_seccion6"
+include(":app")
 
 subprojects {
-    val buildDirProvider = layout.buildDirectory.dir(project.name)
-    buildDirProvider.get().asFile.mkdirs()
-    buildDir = buildDirProvider.get().asFile
+    val buildDirProvider = layout.buildDirectory.dir(project.name) // Esta es la línea importante
+    buildDir = buildDirProvider.get().asFile // Esta es la línea importante
     evaluationDependsOn(":app")
 }
 

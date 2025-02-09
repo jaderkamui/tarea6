@@ -1,15 +1,15 @@
 pluginManagement {
     repositories {
-        google() // Repositorio Google para plugins
+        google()
         mavenCentral()
         gradlePluginPortal()
     }
 }
 
 dependencyResolutionManagement {
-    repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS) // Fuerza a usar solo los repositorios de settings
+    repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
     repositories {
-        google() // Repositorio Google para dependencias
+        google()
         mavenCentral()
     }
 }
