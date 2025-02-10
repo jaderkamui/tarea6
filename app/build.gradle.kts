@@ -1,21 +1,20 @@
-
+import androidx.glance.appwidget.compose
 
 plugins {
-    id("com.android.application")
-    id("org.jetbrains.kotlin.android")
+    alias(libs.plugins.android.application)
+    alias(libs.plugins.kotlin.android)
     id("org.jetbrains.kotlin.kapt") // Para Room
     id("com.google.dagger.hilt.android") // Para Hilt
-    // id("org.jetbrains.kotlin.android.extensions")  <- ELIMINAR ESTA LÍNEA
 }
 
 android {
     namespace = "muni.jader_munoz_seccion6"
-    compileSdk = 34
+    compileSdk = 35
 
     defaultConfig {
         applicationId = "muni.jader_munoz_seccion6"
         minSdk = 21
-        targetSdk = 34
+        targetSdk = 35
         versionCode = 1
         versionName = "1.0"
 
@@ -30,12 +29,12 @@ android {
     }
 
     compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_1_8 // O JavaVersion.VERSION_11 si usas Java 11
-        targetCompatibility = JavaVersion.VERSION_1_8 // O JavaVersion.VERSION_11 si usas Java 11
+        sourceCompatibility = org.jetbrains.kotlin.KotlinVersion.VERSION_1_5.toString()
+        targetCompatibility = org.jetbrains.kotlin.KotlinVersion.VERSION_1_5.toString()
     }
 
     kotlinOptions {
-        jvmTarget = "17" // O "11" si prefieres
+        jvmTarget = "11"
         freeCompilerArgs = listOf("-Xopt-in=kotlin.RequiresOptIn")
     }
 
@@ -51,8 +50,6 @@ android {
 dependencies {
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.lifecycle.runtime.ktx)
-    implementation(libs.androidx.glance)
-    implementation(libs.androidx.glance.appwidget) // Si necesitas appwidget
     implementation(libs.androidx.activity.compose)
     implementation(platform(libs.androidx.compose.bom))
     implementation(libs.androidx.ui)
@@ -68,18 +65,18 @@ dependencies {
     debugImplementation(libs.androidx.ui.test.manifest)
 
     // Room
-    implementation(libs.androidx.room.runtime)
-    kapt(libs.androidx.room.compiler)
-    implementation(libs.androidx.room.ktx)
+    implementation("androidx.room:room-runtime:2.5.0")
+    kapt("androidx.room:room-compiler:2.5.0")
+    implementation("androidx.room:room-ktx:2.5.0")
 
     // Lifecycle
-    implementation(libs.androidx.lifecycle.viewmodel.ktx)
-    implementation(libs.androidx.lifecycle.livedata.ktx)
+    implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:2.6.2")
+    implementation("androidx.lifecycle:lifecycle-livedata-ktx:2.6.2")
 
     // Hilt
-    implementation(libs.hilt.android)
-    kapt(libs.hilt.compiler)
-    implementation(libs.androidx.hilt.navigation.compose)
+    implementation("com.google.dagger:hilt-android:2.44")
+    kapt("com.google.dagger:hilt-compiler:2.44")
+    implementation("androidx.hilt:hilt-navigation-compose:1.1.0-alpha01")
 
     // Para compartir datos
     implementation(libs.androidx.core.ktx)

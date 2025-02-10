@@ -1,5 +1,11 @@
-// Top-level build file where you can add configuration options common to all sub-projects/modules.
+import androidx.compose.ui.layout.layout
+import java.io.File
+
 buildscript {
+    repositories {
+        google()
+        mavenCentral()
+    }
     dependencies {
         classpath("com.android.tools.build:gradle:8.2.2") // O la versión más reciente
         classpath("org.jetbrains.kotlin:kotlin-gradle-plugin:1.8.22") // O la versión más reciente
@@ -7,31 +13,12 @@ buildscript {
     }
 }
 
-pluginManagement {
-    repositories {
-        google()
-        mavenCentral()
-        gradlePluginPortal()
-    }
-}
-
-dependencyResolutionManagement {
-    repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
-    repositories {
-        google()
-        mavenCentral()
-    }
-}
-
-rootProject.name = "jader_munoz_seccion6"
-include(":app")
-
+rootProject.layout.buildDirectory.set(file("../build"))
 subprojects {
-    val buildDirProvider = layout.buildDirectory.dir(project.name) // Esta es la línea importante
-    buildDir = buildDirProvider.get().asFile // Esta es la línea importante
+    layout.buildDirectory.set(file("${rootProject.layout.buildDirectory.get()}/${project.name}"))
     evaluationDependsOn(":app")
 }
 
 tasks.register("clean", Delete::class) {
-    delete(rootProject.buildDir)
+    delete(rootProject.layout.buildDirectory)
 }
